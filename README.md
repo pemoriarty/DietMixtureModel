@@ -1,1 +1,1 @@
-# DietModel
+# Diet Mixture Model
