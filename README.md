@@ -23,7 +23,7 @@ MASS
 fitdistrplus  
 
 ###Model Execution:
-*Required Data Format*: The data must be in two columns, where one is a vector of the proportion of each stomach that is the prey type of interest (prey type i) and the other column is the corresponding total stomach contents mass for that stomach. There must be at least one stomach for each of the three cases: proportion of the prey type ($p_i$) is 0, $p_i = 1, 0 < p_i < 1$. 
+*Required Data Format*: The data must be in two columns, where one is a vector of the proportion of each stomach that is the prey type of interest (prey type i) and the other column is the corresponding total stomach contents mass for that stomach. There must be at least one stomach for each of the three cases: proportion of the prey type (p<sub>i</sub>) is 0, p<sub>i</sub> = 1, 0 < p<sub>i</sub> < 1. 
 
 *Run Mixture Model Examples*: 
 To see examples of the mixture model, open the file called ‘MixtureModelExample.R’. Once the necessary packages are installed and loaded, this file will load the example datasets. As demonstrated in the example, to run the mixture model, use the function called ‘run.model.R’. The arguments are the proportion of each stomach that is the prey type (called ‘prop’) and the total stomach contents mass for each stomach (called ‘total.mass’). Inputting these two columns of data into ‘run.model.R’ returns maximum likelihood estimates for all parameters in the mixture model. 
