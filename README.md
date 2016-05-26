@@ -4,7 +4,7 @@ Pamela Moriarty, Tim Essington and Eric Ward
 
 ###Purpose:
 This is an online supplement for:
- Moriarty, P.E., T.E. Essington, E.J. Ward. 2016. A Novel Method to Estimate Prey Contributions to Predator Diets. Canadian Journal of Fishery and Aquatic Sciences. In review. 
+ Moriarty, P.E., T.E. Essington, E.J. Ward. 2016. A Novel Method to Estimate Prey Contributions to Predator Diets. Canadian Journal of Fishery and Aquatic Sciences. *In review.* 
 
 This document demonstrates an example of the mixture model described in the above article. In this supplement, we provide a simulated dataset and an actual dataset used in the article above. We use the provided R code to run our mixture model in order to estimate the model parameters for the datasets. Code was built and tested under R version 3.1.0.
 
@@ -15,12 +15,12 @@ This document demonstrates an example of the mixture model described in the abov
 - Main R functions: see descriptions in table at end of this document
 
 ###Packages Needed:
-plotrix  
-stats4  
-optimx  
-numDeriv  
-MASS  
-fitdistrplus  
+plotrix\\  
+stats4\\  
+optimx\\  
+numDeriv\\ 
+MASS\\  
+fitdistrplus\\  
 
 ###Model Execution:
 *Required Data Format*: The data must be in two columns, where one is a vector of the proportion of each stomach that is the prey type of interest (prey type i) and the other column is the corresponding total stomach contents mass for that stomach. There must be at least one stomach for each of the three cases: proportion of the prey type (p~i~) is 0, pi = 1, 0 < pi < 1. 
