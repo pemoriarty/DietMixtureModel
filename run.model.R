@@ -8,7 +8,7 @@ run.model <- function(prop,total.mass){
   names(out[1:8])<- c("r_theta","r_thetap=1","ms_pres","var_ms_pres","var_ms_abs","beta_mean","beta_sd","c")
   if(out[13]==0){
     est <- c(out[1:8])
-    names(est) <- c("r_theta","r_thetap=1","ms_|r_theta","var_{rtheta}","var_{not rtheta}","betamean","betasd","c_i")
+    names(est) <- c("r_{theta}","r_{thetap=1}","m_s|r_theta","var_{rtheta}","var_{not rtheta}","betamean","betasd","c_i")
     
     return(as.matrix(est))
   }else{

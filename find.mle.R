@@ -19,29 +19,29 @@ find.mle <- function(data,p.bin,p.full,mean.pres,var.pres,var.abs,beta.mean,beta
 
       #pull in the data
       data <- data.fn()
-      p.bin=par[1]
-      p.full=par[2]
-      mean.pres=par[3]
+      r_theta=par[1]
+      r_thetap1=par[2]
+      ms.pres=par[3]
       var.pres=par[4]
       var.abs=par[5]
-      beta.mean=par[6]
-      beta.sd=par[7]
-      p.pop=par[8]
+      betamean=par[6]
+      betasd=par[7]
+      c_i=par[8]
 
       #calculate beta distribution parameters
-      alpha1 <- ((1-beta.mean)/beta.sd^2 - 1/beta.mean)*beta.mean^2
-      alpha2 <- alpha1*(1/beta.mean-1)
+      alpha1 <- ((1-betamean)/betasd^2 - 1/betamean)*betamean^2
+      alpha2 <- alpha1*(1/betamean-1)
       if(alpha1 <=0){alpha1=0.01}
       if(alpha2 <=0){alpha2=0.01}
-      pdietmean = Bmean(alpha1,alpha2)
+      #betamean = Bmean(alpha1,alpha2)
       
-      mean.abs<- (mean.pres*p.bin*(pdietmean + p.full - p.pop - pdietmean*p.full))/(p.pop*(1-p.bin))
+      ms.abs<- (ms.pres*r_theta*(betamean + r_thetap1 - c_i - betamean*r_thetap1))/(c_i*(1-r_theta))
       
       #calculate parameters for the gamma distributions from the mean and variance
-      shape.pres<-mean.pres^2/var.pres
+      shape.pres<-ms.pres^2/var.pres
       scale.pres<-sqrt(var.pres/shape.pres)
       rate.pres<-1/scale.pres
-      shape.abs<-mean.abs^2/var.abs
+      shape.abs<-ms.abs^2/var.abs
       scale.abs<-sqrt(var.abs/shape.abs)
       rate.abs<-1/scale.abs
       
@@ -65,8 +65,8 @@ find.mle <- function(data,p.bin,p.full,mean.pres,var.pres,var.abs,beta.mean,beta
       N.nozero<-max(0,length(not.zero.index))
       N.full<-max(0,length(full.index))
       N.total<-nrow(data)
-      NLL.binom=-dbinom(x=N.nozero,size=N.total,prob=p.bin,log=T)
-      NLL.full=-dbinom(x=N.full,size=N.nozero,prob=p.full,log=T)
+      NLL.binom=-dbinom(x=N.nozero,size=N.total,prob=r_theta,log=T)
+      NLL.full=-dbinom(x=N.full,size=N.nozero,prob=r_thetap1,log=T)
       
       return(NLL.m.empty+NLL.m.full+NLL.diet.p+NLL.binom+NLL.full)#return total negative log likelihood
   }
@@ -82,7 +82,7 @@ scale.warn <- function(w) {
     invokeRestart("muffleWarning")}
 }
 
-optim.result=withCallingHandlers(optimx(par=c(p.bin,p.full,mean.pres,var.pres,var.abs,beta.mean,beta.sd,p.pop),fn=NLL.mle,lower=lower.bnd,upper=upper.bnd,method="nlminb",control=list(maxit=500)),warning=scale.warn)
+optim.result=withCallingHandlers(optimx(par=c(r_theta,r_thetap1,ms.pres,var.pres,var.abs,betamean,betasd,c_i),fn=NLL.mle,lower=lower.bnd,upper=upper.bnd,method="nlminb",control=list(maxit=500)),warning=scale.warn)
 
 
 return(optim.result)

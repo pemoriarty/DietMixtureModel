@@ -22,26 +22,26 @@ model.par <- function(prop,total.mass){
   nprey <- length(which(prey.dat.no0[,1]>0))
   nfull <- length(which(prey.dat.no0[,1]==1))
   n <- nrow(prey.dat.no0)
-  p.bin.tmp <- nprey/n
-  if(p.bin.tmp==0){return("Error. No stomachs contain the prey. Use a reduced model to estimate the relevant parameters.")}
-  p.full.tmp <- nfull/nprey
-  if(p.full.tmp==0){return("Error. No stomachs contain only the prey. Use a reduced model to estimate the relevant parameters.")}
+  r_theta.tmp <- nprey/n
+  if(r_theta.tmp==0){return("Error. No stomachs contain the prey. Use a reduced model to estimate the relevant parameters.")}
+  r_thetap1.tmp <- nfull/nprey
+  if(r_thetap1.tmp==0){return("Error. No stomachs contain only the prey. Use a reduced model to estimate the relevant parameters.")}
   notzero.idx <- setdiff(which(prey.dat.no0[,1] > 0), which(prey.dat.no0[,1] ==1))
-  pdietmean.tmp <- mean(prey.dat.no0[notzero.idx,1])
-  if(is.nan(pdietmean.tmp)){return("Error. No stomachs have a diet fraction of 0 < p < 1. Use a reduced model to estimate the relevant parameters.")}
-  sd.pdiet.tmp <- sd(prey.dat.no0[notzero.idx,1])
-  mass.start <- mean(prey.dat.no0[which(prey.dat.no0[,1]>0),2])
-  sd.pres.start <- sd(prey.dat.no0[which(prey.dat.no0[,1]>0),2])
-  sd.abs.start <- sd(prey.dat.no0[which(prey.dat.no0[,1]==0),2])
+  betamean.tmp <- mean(prey.dat.no0[notzero.idx,1])
+  if(is.nan(betamean.tmp)){return("Error. No stomachs have a diet fraction of 0 < p < 1. Use a reduced model to estimate the relevant parameters.")}
+  beta.sd.tmp <- sd(prey.dat.no0[notzero.idx,1])
+  ms.pres.tmp <- mean(prey.dat.no0[which(prey.dat.no0[,1]>0),2])
+  sd.pres.tmp <- sd(prey.dat.no0[which(prey.dat.no0[,1]>0),2])
+  sd.abs.tmp <- sd(prey.dat.no0[which(prey.dat.no0[,1]==0),2])
   wt.mean <- sum(prey.dat.no0[,1]*prey.dat.no0[,2])/sum(prey.dat.no0[,2])
 
-  mean.abs.tmp<-mean(prey.dat.no0[which(prey.dat.no0[,1]==0),2])
-  p.pop.try<-p.bin.tmp*((1-p.full.tmp)*pdietmean.tmp*mass.start+p.full.tmp*mass.start)/(p.bin.tmp*mass.start+(1-p.bin.tmp)*mean.abs.tmp)
+  ms.abs.tmp<-mean(prey.dat.no0[which(prey.dat.no0[,1]==0),2])
+  c_i.tmp<-r_theta.tmp*((1-r_thetap1.tmp)*betamean.tmp*ms.pres.tmp+r_thetap1.tmp*ms.pres.tmp)/(r_theta.tmp*ms.pres.tmp+(1-r_theta.tmp)*ms.abs.tmp)
   
 
   
    #run the model!
-  prey.est <- find.mle(prey.dat.no0,p.bin=p.bin.tmp,p.full=p.full.tmp,mean.pres=mass.start,var.pres=sd.pres.start^2,var.abs=sd.abs.start^2,beta.mean=pdietmean.tmp,beta.sd=sd.pdiet.tmp,p.pop=p.pop.try)
+  prey.est <- find.mle(prey.dat.no0,p.bin=r_theta.tmp,p.full=r_thetap1.tmp,mean.pres=ms.pres.tmp,var.pres=sd.pres.tmp^2,var.abs=sd.abs.tmp^2,beta.mean=betamean.tmp,beta.sd=beta.sd.tmp,p.pop=c_i.tmp)
 
   #estimate the maximum likelihood estimate for each parameter individually
   source('par.mle.R')
