@@ -41,3 +41,26 @@ Email: pmoriart@uw.edu
 Mailing Address: School of Aquatic and Fishery Sciences  
                 PO Box 355020  
                 Seattle, WA 98195  
+
+###Main Function Descriptions
+Name | Purpose | Inputs | Outputs
+-------|-----------|----------|-----------
+run.model | runs the mixture model | **prop** = column of data of the proportion of each stomach that is prey type *i*; **total.mass** = column of corresponding total stomach contents masses|maximum likelihood estimates of all mixture model parameters
+model.comparison  | compares estimates between previously existing analysis methods and the mixture model | **prop** = column of data of the proportion of each stomach that is prey type *i*; **total.mass** = column of corresponding total stomach contents masses; **mat** = whether output as a matrix is desired (default = F); **CI** = whether error output as 95% confidence intervals is desired (F); **yaxis** = whether the yaxis should be shown on the output plot (T); **ybnd** = maximum value for y axis (1.0); **…**=other arguments to be passed to the plotting function  | table or plot showing the estimates using the mixture model, a conventional mean and weighted mean, and standard error for all 3 methods
+
+###Internal Function Descriptions
+Name | Purpose | Inputs | Outputs
+-----|---------|--------|--------
+model.par | cleans input data, calculates starting values for the mixture model, then compares estimates from the mixture model to estimating each parameter individually to ensure they match | **prop** = column of data of the proportion of each stomach that is prey type *i*; **total.mass** = column of corresponding total stomach contents masses | table of mixture model parameter estimates
+find.mle | calculates parameters for the gamma and beta distributions from their mean and variance, then runs the optimization procedure to find the maximum likelihood estimates |  **data** = cleaned data as a 2 column matrix, starting values for all parameters (**r_theta, r_thetap1, ms.pres, var.pres, var.abs, betamean, betasd, c_i**) | output of the optimization function (optimx)
+par.mle |calculates the maximum likelihood estimate for each mixture model parameter individually | **data** = cleaned data; **prey.est** = estimates from estimating parameters simultaneously; **width** = bounds for how close the two estimates for *c<sub>i</sub>* should be | estimate for *c<sub>i</sub>* from estimating parameters individually and the upper and lower bound of the chosen range
+Bmean | calculates the mean of a beta distribution | **alpha1** = beta parameter 1; **alpha2** = beta parameter 2 | mean of beta distribution
+
+
+   
+      
+         
+
+
+
+
