@@ -40,4 +40,4 @@ Please contact Pamela Moriarty with questions and/or comments.
 Email: pmoriart@uw.edu
 Mailing Address: School of Aquatic and Fishery Sciences
                 PO Box 355020
-		            Seattle, WA 98195
+                Seattle, WA 98195
