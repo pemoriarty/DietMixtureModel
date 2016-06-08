@@ -1,7 +1,7 @@
-#Pamela Moriarty
-#last edited August 19, 2015
-#from data, calculates prey contribution using the mean, weighted mean and GULPS model
-#returns either a plot or table with estimates
+#Author: Pamela Moriarty, pmoriart@uw.edu
+#Last edited: June 8, 2016
+#Purpose: From data, it calculates prey contribution using the mean, weighted mean and diet mixture model presented in Moriarty et al (2016). 
+#Output: Returns either a plot or table with estimates and their error. 
 
 model.comparison <- function(prop,total.mass,mat=F, CI=F, yaxis=T, ybnd=1.0,...){
   #prop- vector of the proportion of each stomach made up of the prey type

@@ -1,3 +1,8 @@
+#Author: Pamela Moriarty, pmoriart@uw.edu
+#Last edited: June 8, 2016
+#Purpose: Calculates the negative log likelihood the diet mixture model in Moriarty et al. (2016).
+#Output: Returns the negative log likelihood for the given data and parameter values.
+
 NLL.mle <- function(par,data){          
 
   #read in parameters and assign them names

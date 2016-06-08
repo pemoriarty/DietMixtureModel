@@ -1,3 +1,9 @@
+#Author: Pamela Moriarty, pmoriart@uw.edu
+#Last edited: June 8, 2016
+#Purpose: Estimates each parameter individually from the diet mixture model in Moriarty et al. (2016).
+#Output: Returns a vector of lower and upper bounds from estimating parameters simultaneously and the c_i estimate from estimating parameters individually
+
+
 par.mle <- function(prey.dat.no0,prey.est,width){
     r_theta.tmp <- prey.est[1]
     r_thetap1.tmp <- prey.est[2]

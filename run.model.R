@@ -1,3 +1,9 @@
+#Author: Pamela Moriarty, pmoriart@uw.edu
+#Last edited: June 8, 2016
+#Purpose: Calls the diet mixture model described in Moriarty et al. (2016)
+#Output: Returns a vector of parameter estimates
+
+
 run.model <- function(prop,total.mass){
   source('model.par.R')
   dens.warn <- function(w) {
@@ -5,6 +11,7 @@ run.model <- function(prop,total.mass){
       invokeRestart("muffleWarning")}
   }
   out <- withCallingHandlers(model.par(prop,total.mass),warning=dens.warn)
+  if(class(out)[1]=="optimx"){
   names(out[1:8])<- c("r_theta","r_thetap=1","ms_pres","var_ms_pres","var_ms_abs","beta_mean","beta_sd","c")
   if(out[13]==0){
     est <- c(out[1:8])
@@ -13,5 +20,8 @@ run.model <- function(prop,total.mass){
     return(as.matrix(est))
   }else{
     return(print("Model didn't converge"))
+  }
+  }else{
+    print(out)
   }
 }

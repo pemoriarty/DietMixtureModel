@@ -1,15 +1,18 @@
-#Pamela Moriarty
-#last edited August 17, 2015
-#estimates parameters for the GULPS Model
-find.mle <- function(data,p.bin,p.full,mean.pres,var.pres,var.abs,beta.mean,beta.sd,p.pop){
-  #data = 2 column dataframe, where first column is proportion of each stomach made up of the prey type and the second column is the total stomach mass
-  #p.bin = starting value for probability a stomach contains the prey type
-  #p.full = starting value for probability a stomach that contains the prey only contains the prey type
-  #mean.pres = starting value for mean stomach mass of those that contain the prey type
+#Author: Pamela Moriarty, pmoriart@uw.edu
+#Last edited: June 8, 2016
+#Purpose: estimates parameters for the diet mixture model presented in Moriarty et al. (2016)
+#Output: Results of the optimization function, optimx
+
+find.mle <- function(data,r_theta,r_thetap1,ms.pres,var.pres,var.abs,betamean,betasd,c_i){
+  #data      = 2 column dataframe, where first column is proportion of each stomach made up of the prey       type and the second column is the total stomach mass
+  #r_theta   = starting value for probability a stomach contains the prey type
+  #r_thetap1 = starting value for probability a stomach that contains the prey only contains the prey type
+  #ms.pres  = starting value for mean stomach mass of those that contain the prey type
   #var.pres = starting value for variance of stomach masses of those that contain the prey type
-  #var.abs = starting value for variance of stomach masses of those that do not contain the prey type
-  #beta.mean, beta.sd = starting values for the mean and standard deviation of the beta distribution
-  #p.pop = starting value for the total contribution of the prey type to the predator's diet at the population level
+  #var.abs  = starting value for variance of stomach masses of those that do not contain the prey type
+  #betamean = starting value for the standard deviation of the beta distribution
+  #beta.sd  = starting value for the standard deviation of the beta distribution
+  #c_i = starting value for the total contribution of the prey type to the predator's diet at the population level
   
   require(stats4)
   source('Bmean.R')  
