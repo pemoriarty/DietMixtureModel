@@ -12,11 +12,14 @@ par.mle <- function(prey.dat.no0,prey.est,width){
     beta.mle <- fitdist(prey.dat.no0[notzero.idx],distr="beta",method=c("mle"))[[1]]
       betamean.mle <- beta.mle[1]/sum(beta.mle)
       betasd.mle <- (beta.mle[1]*beta.mle[2])/((beta.mle[1]+beta.mle[2])^2*(beta.mle[1]+beta.mle[2]+1))
-      
-      ms.abs.mle <- fitdistr(prey.dat.no0[which(prey.dat.no0[,1]==0),2],densfun="gamma")[[1]]  
+      dens.warn <- function(w) {
+        if(any(grepl("densfun",w))){
+          invokeRestart("muffleWarning")}
+      }
+      ms.abs.mle <- withCallingHandlers(fitdistr(prey.dat.no0[which(prey.dat.no0[,1]==0),2],densfun="gamma")[[1]],warning=dens.warn)  
       ms.abs.mean <- ms.abs.mle[1]/ms.abs.mle[2]
       ms.abs.var <- ms.abs.mle[1]/ms.abs.mle[2]^2
-      ms.pres.mle <- fitdistr(prey.dat.no0[which(prey.dat.no0[,1]>0),2],densfun="gamma")[[1]]  
+      ms.pres.mle <- withCallingHandlers(fitdistr(prey.dat.no0[which(prey.dat.no0[,1]>0),2],densfun="gamma")[[1]],warning=dens.warn)  
       ms.pres.mean <- ms.pres.mle[1]/ms.pres.mle[2]
       ms.pres.var <- ms.pres.mle[1]/ms.pres.mle[2]^2
       

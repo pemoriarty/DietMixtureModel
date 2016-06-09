@@ -6,11 +6,8 @@
 
 run.model <- function(prop,total.mass){
   source('model.par.R')
-  dens.warn <- function(w) {
-    if(any(grepl("densfun",w))){
-      invokeRestart("muffleWarning")}
-  }
-  out <- withCallingHandlers(model.par(prop,total.mass),warning=dens.warn)
+
+  out <- model.par(prop,total.mass)
   if(class(out)[1]=="optimx"){
   names(out[1:8])<- c("r_theta","r_thetap=1","ms_pres","var_ms_pres","var_ms_abs","beta_mean","beta_sd","c")
   if(out[13]==0){

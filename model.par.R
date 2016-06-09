@@ -69,8 +69,8 @@ model.par <- function(prop,total.mass){
 
   #estimate the maximum likelihood estimate for each parameter individually
   source('par.mle.R')
+
   bnd <- par.mle(prey.dat.no0,prey.est,0.2)
-  
   #check whether individual estimates match the estimates from estimating all parameters at once
   if(bnd[1]<bnd[3] & bnd[2]>bnd[3]){
     return(prey.est)
