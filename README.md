@@ -4,7 +4,7 @@ Pamela Moriarty, Tim Essington and Eric Ward
 
 ### Purpose:
 This is an online supplement for:
- Moriarty, P.E., T.E. Essington, E.J. Ward. 2016. A Novel Method to Estimate Prey Contributions to Predator Diets. Canadian Journal of Fishery and Aquatic Sciences. doi 10.1139/cjfas-2016-0149
+ Moriarty, P.E., T.E. Essington, E.J. Ward. 2017. A Novel Method to Estimate Prey Contributions to Predator Diets. Canadian Journal of Fishery and Aquatic Sciences 74(2): 168-177.
 
 This document demonstrates an example of the mixture model described in the above article. In this supplement, we provide a simulated dataset and an actual dataset used in the article above. We use the provided R code to run our mixture model in order to estimate the model parameters for the datasets. Code was built and tested under R version 3.1.0.
 
@@ -33,7 +33,7 @@ Additionally, to compare the estimates and error from the mixture model to other
 Thanks to Anne Beaudreau for use of the lingcod data. 
 
 ### Support, Liability and Copyright: 
-Support in using this software is available from Pamela Moriarty, pmoriart@uw.edu. The code and files contained in this package may be copied and distributed for non-commercial purposes. If it is used in a publication, please cite Moriarty et al. (2016) (full citation at top of this document).  The authors, University of Washington, and National Oceanic and Atmospheric Administration accept no liability for the use of this software.  
+Support in using this software is available from Pamela Moriarty, pmoriart@uw.edu. The code and files contained in this package may be copied and distributed for non-commercial purposes. If it is used in a publication, please cite Moriarty et al. (2017) (full citation at top of this document).  The authors, University of Washington, and National Oceanic and Atmospheric Administration accept no liability for the use of this software.  
 
 ### Contact Information
 Please contact Pamela Moriarty with questions and/or comments   
